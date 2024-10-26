@@ -25,6 +25,20 @@ const Task = {
             callback
         );
     },
+	update: (id, task, callback) => {
+        db.query(
+            'UPDATE tasks SET name = ?, priority = ? WHERE id = ?',
+            [task.name, task.priority, id],
+            callback
+        );
+    },
+	delete: (id, callback) => {
+        db.query(
+            'DELETE FROM tasks WHERE id = ?',
+            [id],
+            callback
+        );
+    },
 };
 
 export default Task; // Export the Task object

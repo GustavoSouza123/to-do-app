@@ -53,6 +53,30 @@ const Home = () => {
         });
     };
 
+    const editTask = (id, updatedTask) => {
+        fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedTask),
+        }).then(() => {
+            const updatedTasks = tasks.map((task) =>
+                task.id === id ? { ...task, ...updatedTask } : task
+            );
+            setTasks(updatedTasks);
+            updateProgress(updatedTasks);
+        });
+    };
+
+    const deleteTask = (id) => {
+        fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'DELETE',
+        }).then(() => {
+            const updatedTasks = tasks.filter((task) => task.id !== id);
+            setTasks(updatedTasks);
+            updateProgress(updatedTasks);
+        });
+    };
+
     const updateProgress = (tasks) => {
         const completed = tasks.filter((task) => task.completed).length;
         setProgress({ completed, total: tasks.length });
@@ -65,6 +89,8 @@ const Home = () => {
                 tasks={tasks}
                 onComplete={completeTask}
                 onUncomplete={uncompleteTask}
+                onEdit={editTask}
+                onDelete={deleteTask}
             />
             <Dashboard progress={progress} />
         </div>
