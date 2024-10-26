@@ -3,7 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-const Dashboard = ({ progress }) => {
+const Dashboard = ({ progress, tasks }) => {
     const data = {
         labels: ['Completed', 'Remaining'],
         datasets: [
@@ -33,7 +33,13 @@ const Dashboard = ({ progress }) => {
             <p>
                 Completion Rate:{' '}
                 {progress.total > 0
-                    ? ((progress.completed / progress.total) * 100).toFixed(2)
+                    ? tasks
+                          .reduce(
+                              (acc, task) =>
+                                  acc + (task.completed ? task.priority : 0),
+                              0
+                          )
+                          .toFixed(2)
                     : 0}
                 %
             </p>

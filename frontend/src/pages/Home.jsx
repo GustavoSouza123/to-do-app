@@ -92,7 +92,7 @@ const Home = () => {
                 onEdit={editTask}
                 onDelete={deleteTask}
             />
-            <Dashboard progress={progress} />
+            <Dashboard progress={progress} tasks={tasks} />
         </div>
     );
 };
