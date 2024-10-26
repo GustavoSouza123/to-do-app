@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    background-color: #1a1a1a; /* Dark background */
+    color: #ffffff; /* Light text color */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff; /* Ensure headings are white */
+}
+
+button {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.8; /* Slightly fade buttons on hover */
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller heading on mobile */
+    }
+}

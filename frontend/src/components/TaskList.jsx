@@ -19,24 +19,24 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
     };
 
     return (
-        <div>
+        <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
             <h2 className="text-xl font-bold">Your Tasks</h2>
             <ul>
                 {tasks.map(task => (
-                    <li key={task.id} className={`border-b py-2 ${task.completed ? 'line-through text-gray-500' : ''}`}>
+                    <li key={task.id} className={`border-b py-2 ${task.completed ? 'line-through text-gray-500' : 'text-white'}`}>
                         {editingTask === task.id ? (
                             <div>
                                 <input
                                     type="text"
                                     value={taskName}
                                     onChange={(e) => setTaskName(e.target.value)}
-                                    className="border p-1"
+                                    className="border p-1 bg-gray-700 text-white"
                                 />
                                 <input
                                     type="number"
                                     value={taskPriority}
                                     onChange={(e) => setTaskPriority(e.target.value)}
-                                    className="border p-1 ml-2"
+                                    className="border p-1 ml-2 bg-gray-700 text-white"
                                 />
                                 <button
                                     onClick={() => handleUpdate(task.id)}

@@ -21,12 +21,26 @@ const Dashboard = ({ progress, tasks }) => {
         scales: {
             y: {
                 beginAtZero: true,
+                grid: {
+                    color: '#444444', // Darker grid lines
+                },
+                ticks: {
+                    color: '#ffffff', // White ticks
+                },
+            },
+            x: {
+                grid: {
+                    color: '#444444', // Darker grid lines
+                },
+                ticks: {
+                    color: '#ffffff', // White ticks
+                },
             },
         },
     };
 
     return (
-        <div>
+        <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
             <h2 className="text-xl font-bold">Progress Dashboard</h2>
             <p>Tasks Completed: {progress.completed}</p>
             <p>Total Tasks: {progress.total}</p>
