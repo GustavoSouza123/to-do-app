@@ -10,8 +10,16 @@ const Dashboard = ({ progress, tasks }) => {
             {
                 label: 'Tasks Priority',
                 data: [
-                    tasks.reduce((acc, task) => acc + (task.completed ? task.priority : 0), 0), 
-                    tasks.reduce((acc, task) => acc + (!task.completed ? task.priority : 0), 0)
+                    tasks.reduce(
+                        (acc, task) =>
+                            acc + (task.completed ? task.priority : 0),
+                        0
+                    ),
+                    tasks.reduce(
+                        (acc, task) =>
+                            acc + (!task.completed ? task.priority : 0),
+                        0
+                    ),
                 ],
                 backgroundColor: ['#4CAF50', '#FF6384'],
                 borderColor: ['#4CAF50', '#FF6384'],
@@ -52,13 +60,11 @@ const Dashboard = ({ progress, tasks }) => {
             <p>
                 Completion Rate:{' '}
                 {progress.total > 0
-                    ? tasks
-                          .reduce(
-                              (acc, task) =>
-                                  acc + (task.completed ? task.priority : 0),
-                              0
-                          )
-                          .toFixed(2)
+                    ? tasks.reduce(
+                          (acc, task) =>
+                              acc + (task.completed ? task.priority : 0),
+                          0
+                      )
                     : 0}
                 %
             </p>

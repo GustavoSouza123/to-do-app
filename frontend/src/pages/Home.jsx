@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import Dashboard from '../components/Dashboard';
+import HelpModal from '../components/HelpModal'; // Import the HelpModal
 
 const Home = () => {
     const [tasks, setTasks] = useState([]);
     const [progress, setProgress] = useState({ completed: 0, total: 0 });
+    const [isHelpModalOpen, setHelpModalOpen] = useState(false); // State for modal
 
     useEffect(() => {
         fetch('http://localhost:5000/tasks')
@@ -68,13 +70,15 @@ const Home = () => {
     };
 
     const deleteTask = (id) => {
-        fetch(`http://localhost:5000/tasks/${id}`, {
-            method: 'DELETE',
-        }).then(() => {
-            const updatedTasks = tasks.filter((task) => task.id !== id);
-            setTasks(updatedTasks);
-            updateProgress(updatedTasks);
-        });
+        if (window.confirm("Are you sure you want to delete this task?")) {
+            fetch(`http://localhost:5000/tasks/${id}`, {
+                method: 'DELETE',
+            }).then(() => {
+                const updatedTasks = tasks.filter((task) => task.id !== id);
+                setTasks(updatedTasks);
+                updateProgress(updatedTasks);
+            });
+        }
     };
 
     const updateProgress = (tasks) => {
@@ -93,6 +97,13 @@ const Home = () => {
                 onDelete={deleteTask}
             />
             <Dashboard progress={progress} tasks={tasks} />
+            <button
+                onClick={() => setHelpModalOpen(true)}
+                className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg"
+            >
+                Help
+            </button>
+            <HelpModal isOpen={isHelpModalOpen} onClose={() => setHelpModalOpen(false)} />
         </div>
     );
 };

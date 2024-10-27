@@ -27,9 +27,9 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
                     <div
                         key={task.id}
                         className={`border p-4 rounded-lg ${
-                            task.completed ? 'bg-gray-600' : 'bg-gray-800'
-                        } text-white cursor-pointer`}
-                        onClick={() => task.completed ? onUncomplete(task.id) : onComplete(task.id)}
+                            task.completed && editingTask != task.id ? 'bg-gray-600' : 'bg-gray-800'
+                        } text-white`}
+                        onClick={() => {} /* No action on task click */}
                     >
                         {editingTask === task.id ? (
                             <div>
