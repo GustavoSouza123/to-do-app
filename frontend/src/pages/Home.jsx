@@ -83,7 +83,7 @@ const Home = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="pt-8">
             <TaskForm onAddTask={addTask} />
             <TaskList
                 tasks={tasks}

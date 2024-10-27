@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaEdit, FaTrash, FaCheck, FaUndo } from 'react-icons/fa'; // Import icons from React Icons
 
 const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
     const [editingTask, setEditingTask] = useState(null);
@@ -42,38 +43,38 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
                                     onClick={() => handleUpdate(task.id)}
                                     className="ml-2 bg-blue-500 text-white p-1 rounded"
                                 >
-                                    Save
+                                    <FaCheck />
                                 </button>
                             </div>
                         ) : (
-                            <div>
-                                {task.name} - {task.priority}%
+                            <div className="flex items-center">
+                                <span className="flex-1">{task.name} - {task.priority}%</span>
                                 {task.completed ? (
                                     <button
                                         onClick={() => onUncomplete(task.id)}
                                         className="ml-4 bg-red-500 text-white p-1 rounded"
                                     >
-                                        Undo
+                                        <FaUndo />
                                     </button>
                                 ) : (
                                     <button
                                         onClick={() => onComplete(task.id)}
                                         className="ml-4 bg-green-500 text-white p-1 rounded"
                                     >
-                                        Complete
+                                        <FaCheck />
                                     </button>
                                 )}
                                 <button
                                     onClick={() => handleEdit(task)}
                                     className="ml-4 bg-yellow-500 text-white p-1 rounded"
                                 >
-                                    Edit
+                                    <FaEdit />
                                 </button>
                                 <button
                                     onClick={() => onDelete(task.id)}
                                     className="ml-4 bg-red-700 text-white p-1 rounded"
                                 >
-                                    Delete
+                                    <FaTrash />
                                 </button>
                             </div>
                         )}
