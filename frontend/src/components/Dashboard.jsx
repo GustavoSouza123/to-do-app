@@ -68,7 +68,7 @@ const Dashboard = ({ progress, tasks }) => {
                     : 0}
                 %
             </p>
-            <div style={{ maxWidth: '700px' }}>
+            <div className="max-w-[700px] min-h-[200px]">
                 <Bar data={data} options={options} />
             </div>
         </div>

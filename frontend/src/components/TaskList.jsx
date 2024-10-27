@@ -39,7 +39,7 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
                                     onChange={(e) =>
                                         setTaskName(e.target.value)
                                     }
-                                    className="border p-1 bg-gray-800 text-white"
+                                    className="border p-1 bg-gray-700 text-white"
                                 />
                                 <input
                                     type="number"
@@ -47,7 +47,7 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
                                     onChange={(e) =>
                                         setTaskPriority(e.target.value)
                                     }
-                                    className="border p-1 ml-2 bg-gray-800 text-white"
+                                    className="border p-1 ml-2 bg-gray-700 text-white"
                                 />
                                 <button
                                     onClick={() => handleUpdate(task.id)}
