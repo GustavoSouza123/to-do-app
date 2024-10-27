@@ -3,6 +3,7 @@ import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import Dashboard from '../components/Dashboard';
 import HelpModal from '../components/HelpModal'; // Import the HelpModal
+import { FaQuestionCircle } from 'react-icons/fa';
 
 const Home = () => {
     const [tasks, setTasks] = useState([]);
@@ -101,7 +102,7 @@ const Home = () => {
                 onClick={() => setHelpModalOpen(true)}
                 className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg"
             >
-                Help
+                <FaQuestionCircle size={20} />
             </button>
             <HelpModal isOpen={isHelpModalOpen} onClose={() => setHelpModalOpen(false)} />
         </div>
