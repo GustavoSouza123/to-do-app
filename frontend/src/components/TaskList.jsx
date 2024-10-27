@@ -21,23 +21,33 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
 
     return (
         <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h2 className="text-xl font-bold">Your Tasks</h2>
-            <ul>
-                {tasks.map(task => (
-                    <li key={task.id} className={`border-b py-2 ${task.completed ? 'line-through text-gray-500' : 'text-white'}`}>
+            <h2 className="text-xl font-bold mb-4">Your Tasks</h2>
+            <div className="grid grid-cols-1 gap-4">
+                {tasks.map((task) => (
+                    <div
+                        key={task.id}
+                        className={`border p-4 rounded-lg ${
+                            task.completed ? 'bg-gray-600' : 'bg-gray-800'
+                        } text-white cursor-pointer`}
+                        onClick={() => task.completed ? onUncomplete(task.id) : onComplete(task.id)}
+                    >
                         {editingTask === task.id ? (
                             <div>
                                 <input
                                     type="text"
                                     value={taskName}
-                                    onChange={(e) => setTaskName(e.target.value)}
-                                    className="border p-1 bg-gray-700 text-white"
+                                    onChange={(e) =>
+                                        setTaskName(e.target.value)
+                                    }
+                                    className="border p-1 bg-gray-800 text-white"
                                 />
                                 <input
                                     type="number"
                                     value={taskPriority}
-                                    onChange={(e) => setTaskPriority(e.target.value)}
-                                    className="border p-1 ml-2 bg-gray-700 text-white"
+                                    onChange={(e) =>
+                                        setTaskPriority(e.target.value)
+                                    }
+                                    className="border p-1 ml-2 bg-gray-800 text-white"
                                 />
                                 <button
                                     onClick={() => handleUpdate(task.id)}
@@ -47,40 +57,52 @@ const TaskList = ({ tasks, onComplete, onUncomplete, onEdit, onDelete }) => {
                                 </button>
                             </div>
                         ) : (
-                            <div className="flex items-center">
-                                <span className="flex-1">{task.name} - {task.priority}%</span>
-                                {task.completed ? (
-                                    <button
-                                        onClick={() => onUncomplete(task.id)}
-                                        className="ml-4 bg-red-500 text-white p-1 rounded"
-                                    >
-                                        <FaUndo />
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => onComplete(task.id)}
-                                        className="ml-4 bg-green-500 text-white p-1 rounded"
-                                    >
-                                        <FaCheck />
-                                    </button>
-                                )}
-                                <button
-                                    onClick={() => handleEdit(task)}
-                                    className="ml-4 bg-yellow-500 text-white p-1 rounded"
+                            <div className="flex items-center justify-between">
+                                <span
+                                    style={{
+                                        textDecoration: task.completed
+                                            ? 'line-through'
+                                            : 'none',
+                                    }}
                                 >
-                                    <FaEdit />
-                                </button>
-                                <button
-                                    onClick={() => onDelete(task.id)}
-                                    className="ml-4 bg-red-700 text-white p-1 rounded"
-                                >
-                                    <FaTrash />
-                                </button>
+                                    {task.name} - {task.priority}%
+                                </span>
+                                <div className="flex items-center">
+                                    {task.completed ? (
+                                        <button
+                                            onClick={() =>
+                                                onUncomplete(task.id)
+                                            }
+                                            className="ml-4 bg-red-500 text-white p-1 rounded"
+                                        >
+                                            <FaUndo />
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() => onComplete(task.id)}
+                                            className="ml-4 bg-green-500 text-white p-1 rounded"
+                                        >
+                                            <FaCheck />
+                                        </button>
+                                    )}
+                                    <button
+                                        onClick={() => handleEdit(task)}
+                                        className="ml-4 bg-yellow-500 text-white p-1 rounded"
+                                    >
+                                        <FaEdit />
+                                    </button>
+                                    <button
+                                        onClick={() => onDelete(task.id)}
+                                        className="ml-4 bg-red-700 text-white p-1 rounded"
+                                    >
+                                        <FaTrash />
+                                    </button>
+                                </div>
                             </div>
                         )}
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

@@ -5,11 +5,14 @@ Chart.register(...registerables);
 
 const Dashboard = ({ progress, tasks }) => {
     const data = {
-        labels: ['Completed', 'Remaining'],
+        labels: ['Completed Priority', 'Remaining Priority'],
         datasets: [
             {
-                label: 'Tasks',
-                data: [progress.completed, progress.total - progress.completed],
+                label: 'Tasks Priority',
+                data: [
+                    tasks.reduce((acc, task) => acc + (task.completed ? task.priority : 0), 0), 
+                    tasks.reduce((acc, task) => acc + (!task.completed ? task.priority : 0), 0)
+                ],
                 backgroundColor: ['#4CAF50', '#FF6384'],
                 borderColor: ['#4CAF50', '#FF6384'],
                 borderWidth: 1,
@@ -21,6 +24,8 @@ const Dashboard = ({ progress, tasks }) => {
         scales: {
             y: {
                 beginAtZero: true,
+                min: 0, // Set minimum value for y-axis
+                max: 100, // Set maximum value for y-axis
                 grid: {
                     color: '#444444', // Darker grid lines
                 },
@@ -41,7 +46,7 @@ const Dashboard = ({ progress, tasks }) => {
 
     return (
         <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h2 className="text-xl font-bold">Progress Dashboard</h2>
+            <h2 className="text-xl font-bold mb-4">Progress Dashboard</h2>
             <p>Tasks Completed: {progress.completed}</p>
             <p>Total Tasks: {progress.total}</p>
             <p>
@@ -57,7 +62,9 @@ const Dashboard = ({ progress, tasks }) => {
                     : 0}
                 %
             </p>
-            <Bar data={data} options={options} />
+            <div style={{ maxWidth: '700px' }}>
+                <Bar data={data} options={options} />
+            </div>
         </div>
     );
 };

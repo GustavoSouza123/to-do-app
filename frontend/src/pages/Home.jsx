@@ -83,7 +83,7 @@ const Home = () => {
     };
 
     return (
-        <div className="pt-8">
+        <div className="pt-8 flex flex-col gap-6">
             <TaskForm onAddTask={addTask} />
             <TaskList
                 tasks={tasks}

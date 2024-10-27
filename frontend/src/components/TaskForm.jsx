@@ -13,7 +13,7 @@ const TaskForm = ({ onAddTask }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mb-4 bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col md:gap-3 md:flex-row items-start">
+        <form onSubmit={handleSubmit} className="bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col md:gap-3 md:flex-row items-start">
             <input
                 type="text"
                 value={taskName}
@@ -27,7 +27,7 @@ const TaskForm = ({ onAddTask }) => {
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
                 placeholder="Priority (%)"
-                className="border p-2 mb-2 bg-gray-700 text-white w-full md:w-20 md:mb-0"
+                className="border p-2 mb-2 bg-gray-700 text-white w-full md:w-32 md:mb-0"
                 required
             />
             <button type="submit" className="bg-blue-500 text-white p-2 rounded flex items-center mt-2 md:mt-0">
